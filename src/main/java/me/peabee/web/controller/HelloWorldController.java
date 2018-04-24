@@ -34,8 +34,13 @@ public class HelloWorldController {
         return mv;
     }
 
-    @RequestMapping("/excetion")
+    @RequestMapping("/aa")
     public ModelAndView validateGlobalException() throws Exception{
         throw new RuntimeException("something wrong here");
+    }
+
+    @RequestMapping("/exception")
+    public ModelAndView validateGlobalException2() throws Exception{
+        throw new RuntimeException("something wrong here 2");
     }
 }
