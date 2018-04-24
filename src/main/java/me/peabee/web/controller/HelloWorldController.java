@@ -20,18 +20,22 @@ public class HelloWorldController {
     @Autowired
     private KbsSubjectService  kbsSubjectService;
 
-    @RequestMapping("/hello")
+    @RequestMapping("/subject")
     @ResponseBody
-    public Object hellworld() throws Exception{
-        throw new Exception("sssss");
-//        return kbsSubjectService.getById(195831);
+    public Object subject() throws Exception{
+        return kbsSubjectService.getById(195831);
     }
 
-    @RequestMapping("/errorr")
-    public ModelAndView helloerror(Map<String,Object> model){
+    @RequestMapping("/thymeleaf")
+    public ModelAndView thymeleaf(Map<String,Object> model){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("errorr");
+        mv.setViewName("thymeleaf");
         mv.addObject("time", System.currentTimeMillis());
         return mv;
+    }
+
+    @RequestMapping("/excetion")
+    public ModelAndView validateGlobalException() throws Exception{
+        throw new RuntimeException("something wrong here");
     }
 }
