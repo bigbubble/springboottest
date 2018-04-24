@@ -1,4 +1,4 @@
-package me.peabee.web.ErrorHandler;
+package me.peabee.web.errorhandler;
 
 /**
  * Created by pengbo on 18-4-24.
