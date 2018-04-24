@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.peabee.dao.mapper.KbsSubjectMapper" >
+  <resultMap id="BaseResultMap" type="me.peabee.dao.model.KbsSubject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="subjectName" property="subjectName" jdbcType="VARCHAR" />
+    <result column="SubjectLibrary" property="subjectLibrary" jdbcType="INTEGER" />
+    <result column="DictionaryFlag" property="dictionaryFlag" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="subjectType" property="subjectType" jdbcType="VARCHAR" />
+    <result column="multiDealFlag" property="multiDealFlag" jdbcType="VARCHAR" />
+    <result column="kernelSubject" property="kernelSubject" jdbcType="VARCHAR" />
+    <result column="attributiveId" property="attributiveId" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="VARCHAR" />
+    <result column="subjectApply" property="subjectApply" jdbcType="VARCHAR" />
+    <result column="firstPinYinChar" property="firstPinYinChar" jdbcType="VARCHAR" />
+    <result column="kernelFrom" property="kernelFrom" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, subjectName, SubjectLibrary, DictionaryFlag, state, subjectType, multiDealFlag, 
+    kernelSubject, attributiveId, rank, subjectApply, firstPinYinChar, kernelFrom
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="me.peabee.dao.model.KbsSubjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kbs_subject
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kbs_subject
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kbs_subject
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="me.peabee.dao.model.KbsSubjectExample" >
+    delete from kbs_subject
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="me.peabee.dao.model.KbsSubject" >
+    insert into kbs_subject (id, subjectName, SubjectLibrary, 
+      DictionaryFlag, state, subjectType, 
+      multiDealFlag, kernelSubject, attributiveId, 
+      rank, subjectApply, firstPinYinChar, 
+      kernelFrom)
+    values (#{id,jdbcType=INTEGER}, #{subjectName,jdbcType=VARCHAR}, #{subjectLibrary,jdbcType=INTEGER}, 
+      #{dictionaryFlag,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, 
+      #{multiDealFlag,jdbcType=VARCHAR}, #{kernelSubject,jdbcType=VARCHAR}, #{attributiveId,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=VARCHAR}, #{subjectApply,jdbcType=VARCHAR}, #{firstPinYinChar,jdbcType=VARCHAR}, 
+      #{kernelFrom,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.peabee.dao.model.KbsSubject" >
+    insert into kbs_subject
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subjectName != null" >
+        subjectName,
+      </if>
+      <if test="subjectLibrary != null" >
+        SubjectLibrary,
+      </if>
+      <if test="dictionaryFlag != null" >
+        DictionaryFlag,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="subjectType != null" >
+        subjectType,
+      </if>
+      <if test="multiDealFlag != null" >
+        multiDealFlag,
+      </if>
+      <if test="kernelSubject != null" >
+        kernelSubject,
+      </if>
+      <if test="attributiveId != null" >
+        attributiveId,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="subjectApply != null" >
+        subjectApply,
+      </if>
+      <if test="firstPinYinChar != null" >
+        firstPinYinChar,
+      </if>
+      <if test="kernelFrom != null" >
+        kernelFrom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subjectName != null" >
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectLibrary != null" >
+        #{subjectLibrary,jdbcType=INTEGER},
+      </if>
+      <if test="dictionaryFlag != null" >
+        #{dictionaryFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null" >
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="multiDealFlag != null" >
+        #{multiDealFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="kernelSubject != null" >
+        #{kernelSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="attributiveId != null" >
+        #{attributiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectApply != null" >
+        #{subjectApply,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPinYinChar != null" >
+        #{firstPinYinChar,jdbcType=VARCHAR},
+      </if>
+      <if test="kernelFrom != null" >
+        #{kernelFrom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="me.peabee.dao.model.KbsSubjectExample" resultType="java.lang.Integer" >
+    select count(*) from kbs_subject
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update kbs_subject
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.subjectName != null" >
+        subjectName = #{record.subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectLibrary != null" >
+        SubjectLibrary = #{record.subjectLibrary,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictionaryFlag != null" >
+        DictionaryFlag = #{record.dictionaryFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectType != null" >
+        subjectType = #{record.subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.multiDealFlag != null" >
+        multiDealFlag = #{record.multiDealFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kernelSubject != null" >
+        kernelSubject = #{record.kernelSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attributiveId != null" >
+        attributiveId = #{record.attributiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rank != null" >
+        rank = #{record.rank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectApply != null" >
+        subjectApply = #{record.subjectApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstPinYinChar != null" >
+        firstPinYinChar = #{record.firstPinYinChar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kernelFrom != null" >
+        kernelFrom = #{record.kernelFrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update kbs_subject
+    set id = #{record.id,jdbcType=INTEGER},
+      subjectName = #{record.subjectName,jdbcType=VARCHAR},
+      SubjectLibrary = #{record.subjectLibrary,jdbcType=INTEGER},
+      DictionaryFlag = #{record.dictionaryFlag,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      subjectType = #{record.subjectType,jdbcType=VARCHAR},
+      multiDealFlag = #{record.multiDealFlag,jdbcType=VARCHAR},
+      kernelSubject = #{record.kernelSubject,jdbcType=VARCHAR},
+      attributiveId = #{record.attributiveId,jdbcType=VARCHAR},
+      rank = #{record.rank,jdbcType=VARCHAR},
+      subjectApply = #{record.subjectApply,jdbcType=VARCHAR},
+      firstPinYinChar = #{record.firstPinYinChar,jdbcType=VARCHAR},
+      kernelFrom = #{record.kernelFrom,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="me.peabee.dao.model.KbsSubject" >
+    update kbs_subject
+    <set >
+      <if test="subjectName != null" >
+        subjectName = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectLibrary != null" >
+        SubjectLibrary = #{subjectLibrary,jdbcType=INTEGER},
+      </if>
+      <if test="dictionaryFlag != null" >
+        DictionaryFlag = #{dictionaryFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null" >
+        subjectType = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="multiDealFlag != null" >
+        multiDealFlag = #{multiDealFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="kernelSubject != null" >
+        kernelSubject = #{kernelSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="attributiveId != null" >
+        attributiveId = #{attributiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectApply != null" >
+        subjectApply = #{subjectApply,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPinYinChar != null" >
+        firstPinYinChar = #{firstPinYinChar,jdbcType=VARCHAR},
+      </if>
+      <if test="kernelFrom != null" >
+        kernelFrom = #{kernelFrom,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.peabee.dao.model.KbsSubject" >
+    update kbs_subject
+    set subjectName = #{subjectName,jdbcType=VARCHAR},
+      SubjectLibrary = #{subjectLibrary,jdbcType=INTEGER},
+      DictionaryFlag = #{dictionaryFlag,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      subjectType = #{subjectType,jdbcType=VARCHAR},
+      multiDealFlag = #{multiDealFlag,jdbcType=VARCHAR},
+      kernelSubject = #{kernelSubject,jdbcType=VARCHAR},
+      attributiveId = #{attributiveId,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=VARCHAR},
+      subjectApply = #{subjectApply,jdbcType=VARCHAR},
+      firstPinYinChar = #{firstPinYinChar,jdbcType=VARCHAR},
+      kernelFrom = #{kernelFrom,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
