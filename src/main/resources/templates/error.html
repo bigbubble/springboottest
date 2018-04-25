@@ -10,5 +10,6 @@
 <h1>Error Handler</h1>
     <div th:text="${url}"></div>
     <div th:if="${e != null}" th:text="${e.message}"></div>
+    <div th:if="${e == null}" th:text="404"></div>
 </body>
 </html>

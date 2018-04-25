@@ -23,7 +23,8 @@ public class HelloWorldController {
     @RequestMapping("/subject")
     @ResponseBody
     public Object subject() throws Exception{
-        return kbsSubjectService.getById(195831);
+        throw new RuntimeException("something wrong here 2");
+//        return kbsSubjectService.getById(195831);
     }
 
     @RequestMapping("/thymeleaf")
