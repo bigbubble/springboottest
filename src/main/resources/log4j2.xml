@@ -9,7 +9,8 @@
 
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-5level][%d{yyyy-MM-dd HH:mm:ss.SSS}][%markerSimpleName][%T/%t] %logger{36} - %msg%xEx%n"/>
+            <PatternLayout
+                    pattern="[%-5level][%d{yyyy-MM-dd HH:mm:ss.SSS}][%markerSimpleName][%T/%t] %logger{36} - %msg%xEx%n"/>
             <!--<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
         </Console>
     </appenders>

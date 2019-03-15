@@ -1,4 +1,5 @@
 package me.peabee.web.controller;
+
 import me.peabee.dao.model.Country;
 import me.peabee.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class HelloWorldController {
 
     @RequestMapping("/all")
     @ResponseBody
-    public Object subject() throws Exception{
+    public Object subject() throws Exception {
         return countryService.getAllCountry();
     }
 
@@ -34,12 +35,12 @@ public class HelloWorldController {
 
     @RequestMapping("/name/{name}")
     @ResponseBody
-    public String getCodeByName(@PathVariable("name") String name){
+    public String getCodeByName(@PathVariable("name") String name) {
         return countryService.getCountryCode(name);
     }
 
     @RequestMapping("/thymeleaf")
-    public ModelAndView thymeleaf(Map<String,Object> model){
+    public ModelAndView thymeleaf(Map<String, Object> model) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("thymeleaf");
         mv.addObject("time", System.currentTimeMillis());
@@ -47,12 +48,12 @@ public class HelloWorldController {
     }
 
     @RequestMapping("/aa")
-    public ModelAndView validateGlobalException() throws Exception{
+    public ModelAndView validateGlobalException() throws Exception {
         throw new RuntimeException("something wrong here");
     }
 
     @RequestMapping("/exception")
-    public ModelAndView validateGlobalException2() throws Exception{
+    public ModelAndView validateGlobalException2() throws Exception {
         throw new RuntimeException("something wrong here 2");
     }
 }

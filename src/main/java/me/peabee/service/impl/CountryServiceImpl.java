@@ -38,10 +38,10 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country getCountry(String code) {
-        Country country =  (Country) redisTemplate.opsForValue().get(code);
-        if(country == null) {
+        Country country = (Country) redisTemplate.opsForValue().get(code);
+        if (country == null) {
             country = countryMapper.selectByPrimaryKey(code);
-            if(country != null) {
+            if (country != null) {
                 redisTemplate.opsForValue().set(code, country);
             }
         }
@@ -51,9 +51,9 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public String getCountryCode(String contryName) {
         String code = stringRedisTemplate.opsForValue().get(contryName);
-        if(code == null) {
+        if (code == null) {
             code = countryMapper.selectCodeByName(contryName);
-            if(code != null) {
+            if (code != null) {
                 stringRedisTemplate.opsForValue().set(contryName, code);
             }
         }

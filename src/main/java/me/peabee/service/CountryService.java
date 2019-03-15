@@ -15,12 +15,14 @@ import java.util.List;
 public interface CountryService {
     /**
      * 测试Mybatis
+     *
      * @return
      */
     List<Country> getAllCountry();
 
     /**
      * 测试对象类型redisTemplate
+     *
      * @param code
      * @return
      */
@@ -28,6 +30,7 @@ public interface CountryService {
 
     /**
      * 测试StringRedisTemplate
+     *
      * @param contryName
      * @return
      */

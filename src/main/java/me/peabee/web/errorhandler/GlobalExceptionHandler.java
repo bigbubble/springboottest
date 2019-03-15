@@ -18,14 +18,14 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Object defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
 
-        if(isJSONResult(req)){
+        if (isJSONResult(req)) {
             ErrorInfo<String> r = new ErrorInfo<>();
             r.setMessage(e.getMessage());
             r.setCode(ErrorInfo.ERROR);
             r.setData("Some Data");
             r.setUrl(req.getRequestURL().toString());
             return r;
-        }else{
+        } else {
             ModelAndView mv = new ModelAndView();
             mv.addObject("e", e);
             mv.addObject("url", req.getRequestURL());
@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
 
 
     @ResponseBody
-    @ExceptionHandler(value=NoHandlerFoundException.class)
+    @ExceptionHandler(value = NoHandlerFoundException.class)
     public Object pageNoFoundHandler(HttpServletRequest req, Exception e) throws Exception {
         if (isJSONResult(req)) {
             ErrorInfo<String> r = new ErrorInfo<>();
@@ -56,12 +56,13 @@ public class GlobalExceptionHandler {
 
     /**
      * 返回数据类型是否时JSON
+     *
      * @param request
      * @return
      */
-    private boolean isJSONResult(HttpServletRequest request){
+    private boolean isJSONResult(HttpServletRequest request) {
         //TODO
-        if(request.getRequestURL().toString().contains("subject")) return true; //test code
+        if (request.getRequestURL().toString().contains("subject")) return true; //test code
         return false;
     }
 }

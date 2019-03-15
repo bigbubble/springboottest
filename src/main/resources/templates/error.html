@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>统一异常处理</title>
 </head>
 <body>
 <h1>Error Handler</h1>
-    <div th:text="${url}"></div>
-    <div th:if="${e != null}" th:text="${e.message}"></div>
-    <div th:if="${e == null}" th:text="404"></div>
+<div th:text="${url}"></div>
+<div th:if="${e != null}" th:text="${e.message}"></div>
+<div th:if="${e == null}" th:text="404"></div>
 </body>
 </html>
